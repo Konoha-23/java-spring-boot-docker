@@ -12,24 +12,24 @@ pipeline{
     //    git "https://github.com/Konoha-23/Konoha_maven-web-application.git"
     //  }
     //}
-      stage('Test+Build'){
-      steps{
-        sh "echo Running unitTesting"
-        sh "mvn clean package"
-        echo "echo test successful and backupArtifacts created"
+    stage('Test+Build'){
+    steps{
+      sh "echo Running unitTesting"
+      sh "mvn clean package"
+      echo "echo test successful and backupArtifacts created"
       }
     }
-      stage('codeQuality'){
-      steps{
-        sh "echo Running detail code analysis"
-        sh "mvn sonar:sonar"
-        sh  "echo All conditions met/passed"
+    stage('codeQuality'){
+    steps{
+      sh "echo Running detail code analysis"
+      sh "mvn sonar:sonar"
+      sh  "echo All conditions met/passed"
       }
     }
-      stage('predeployment'){
-      steps{
-        sh "echo creating docker image"
-        sh "docker build -t princebabs/konoha . "
+    stage('predeployment'){
+    steps{
+      sh "echo creating docker image"
+      sh "docker build -t princebabs/konoha . "
       }
     }
       //stage('login to DockerHub'){
