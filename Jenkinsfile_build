@@ -27,15 +27,18 @@ pipeline{
       //}
     //}
        stage('predeployment'){
-      steps{
+       steps{
         sh "echo creating docker image"
         sh "docker build -t princebabs/konoha . "
       }
     }
       stage('login to DockerHub'){
+      steps{
+        sh "echo Logging into DockerHub"
         withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: '')]) {
           sh "docker login -u princebabs -p ${DOKCER_HUB_PASSWORD} "
       }
+    }
     }
     stage('Push to DockerHub'){
       steps{
