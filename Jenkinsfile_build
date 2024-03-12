@@ -3,7 +3,7 @@ pipeline{
         label 'docker'
   }
   tools{
-    maven "maven"
+    maven "maven", "sonar"
   }
   stages{
     //stage('GitClone'){
